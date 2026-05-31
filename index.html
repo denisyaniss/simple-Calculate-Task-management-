@@ -1,40 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Calculator</title>
+    <title>Task Management App</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="calculator">
-        <div class="display">
-            <input type="text" id="display" readonly>
-        </div>
-        <div class="buttons">
-            <button class="btn clear" onclick="clearDisplay()">C</button>
-            <button class="btn operator" onclick="appendOperator('/')">/</button>
-            <button class="btn operator" onclick="appendOperator('*')">*</button>
-            <button class="btn delete" onclick="deleteLastChar()">DEL</button>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-tasks"></i> Task Manager</h1>
+            <p>Gérez vos tâches efficacement</p>
+        </header>
 
-            <button class="btn" onclick="appendNumber('7')">7</button>
-            <button class="btn" onclick="appendNumber('8')">8</button>
-            <button class="btn" onclick="appendNumber('9')">9</button>
-            <button class="btn operator" onclick="appendOperator('-')">-</button>
+        <main class="main-content">
+            <!-- Section d'entrée -->
+            <section class="input-section">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        class="task-input" 
+                        placeholder="Ajouter une nouvelle tâche..."
+                        autocomplete="off"
+                    >
+                    <button id="addBtn" class="add-btn"><i class="fas fa-plus"></i> Ajouter</button>
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all"><i class="fas fa-list"></i> Tous</button>
+                    <button class="filter-btn" data-filter="active"><i class="fas fa-spinner"></i> En cours</button>
+                    <button class="filter-btn" data-filter="completed"><i class="fas fa-check-circle"></i> Complétées</button>
+                </div>
+            </section>
 
-            <button class="btn" onclick="appendNumber('4')">4</button>
-            <button class="btn" onclick="appendNumber('5')">5</button>
-            <button class="btn" onclick="appendNumber('6')">6</button>
-            <button class="btn operator" onclick="appendOperator('+')">+</button>
+            <!-- Statistiques -->
+            <section class="stats">
+                <div class="stat-card">
+                    <span class="stat-label">Total</span>
+                    <span class="stat-value" id="totalTasks">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">En cours</span>
+                    <span class="stat-value active" id="activeTasks">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Complétées</span>
+                    <span class="stat-value completed" id="completedTasks">0</span>
+                </div>
+            </section>
 
-            <button class="btn" onclick="appendNumber('1')">1</button>
-            <button class="btn" onclick="appendNumber('2')">2</button>
-            <button class="btn" onclick="appendNumber('3')">3</button>
-            <button class="btn operator" onclick="appendOperator('.')">.1</button>
+            <!-- Liste des tâches -->
+            <section class="tasks-section">
+                <div id="tasksList" class="tasks-list">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>Aucune tâche pour le moment. Créez-en une !</p>
+                    </div>
+                </div>
+            </section>
 
-            <button class="btn zero" onclick="appendNumber('0')">0</button>
-            <button class="btn equal" onclick="calculate()">=</button>
-        </div>
+            <!-- Section Actions -->
+            <section class="actions-section">
+                <button id="clearCompleted" class="clear-btn">
+                    <i class="fas fa-trash"></i> Supprimer les complétées
+                </button>
+            </section>
+        </main>
     </div>
 
     <script src="script.js"></script>
